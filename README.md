@@ -90,7 +90,9 @@ Pagamento,
 Tarefa, 
 Fornecedor, 
 Material,
-.
+progresso,
+condicoes,
+acidentes.
 
 
 
