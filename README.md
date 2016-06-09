@@ -29,7 +29,8 @@ salario.
 cidade:
 codCidade,
 nome,
-uf.
+uf,
+pais.
 
 uf:
 sigla,
