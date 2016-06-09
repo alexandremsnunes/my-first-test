@@ -19,20 +19,20 @@ class Post(models.Model):
         return self.title
 
 # SIOBRA
+class Pais(models.Model):
+    sigla = models.CharField(max_length=2, primary_key=True)
+    nome = models.CharField(max_length=40)
+
+class Uf(models.Model):
+    sigla = models.CharField(max_length=2, primary_key=True)
+    pais = models.ForeignKey(Pais, on_delete=models.CASCADE)
+    nome = models.CharField(max_length=30)
+
 class Cidade(models.Model):
     cidade_id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=45)
     uf = models.ForeignKey(Uf,on_delete=models.CASCADE)
     pais = models.ForeignKey(Pais,on_delete=models.CASCADE)
-
-class Uf(models.Model):
-    sigla = models.CharField(max_length=2)
-    pais = models.CharField(max_length=2)
-    nome = models.CharField(max_length=30)
-
-class Pais(models.Model):
-    sigla = models.CharField(max_length=2)
-    nome = models.CharField(max_length=40)
 
 class Fornecedor(models.Model):
     fornecedor_id = models.AutoField(primary_key=True)
@@ -53,19 +53,6 @@ class Material(models.Model):
     fornecedor = models.ForeignKey(Fornecedor,on_delete=models.CASCADE)
     preco = models.FloatField()
     qtd_estoque = models.IntegerField()
-
-class Pagamento(models.Model):
-    PAGAMENTO_T = (
-        ('A','Avista'),
-        ('T','Transferencia'),
-        ('C','Cheque'),
-        ('V', 'Vale'),
-    )
-    pagamento_id = models.AutoField(primary_key=True)
-    funcionario_id = models.ForeignKey(Funcionario,on_delete=models.CASCADE)
-    valor = models.FloatField()
-    data_pagamento = models.DateTimeField(blank=True, null=True)
-    tipo_pagamento = models.CharField(max_length=1, choices = PAGAMENTO_T)
 
 class Setor(models.Model):
     setor_id = models.AutoField(primary_key=True)
@@ -112,7 +99,8 @@ class Funcionario(models.Model):
     sexo = models.CharField(max_length=1,choices=SEXO_T)
     estado_civil = models.CharField(max_length=1,choices=ESTADO_C)
     nacionalidade = models.ForeignKey(Pais, on_delete=models.CASCADE)
-    naturalidade = models.ForeignKey(Cidade, on_delete=models.CASCADE)
+#    naturalidade = models.ForeignKey(Cidade, on_delete=models.CASCADE)
+    naturalidade = models.CharField(max_length=45)
     sangue_fator = models.CharField(max_length=2)
     sangue_rh = models.CharField(max_length=1)
     tipo_logradouro = models.CharField(max_length=3,choices=T_LOGRA)
@@ -128,3 +116,16 @@ class Funcionario(models.Model):
     admissao = models.DateTimeField(default=timezone.now)
     email = models.CharField(max_length=40)
     salario = models.FloatField(max_length=50)
+
+class Pagamento(models.Model):
+    PAGAMENTO_T = (
+        ('A','Avista'),
+        ('T','Transferencia'),
+        ('C','Cheque'),
+        ('V', 'Vale'),
+    )
+    pagamento_id = models.AutoField(primary_key=True)
+    funcionario_id = models.ForeignKey(Funcionario,on_delete=models.CASCADE)
+    valor = models.FloatField()
+    data_pagamento = models.DateTimeField(blank=True, null=True)
+    tipo_pagamento = models.CharField(max_length=1, choices = PAGAMENTO_T)

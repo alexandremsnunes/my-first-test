@@ -1,7 +1,15 @@
 from django import forms
-#from .models import Post
-#from models import .
-import models
+from .models import Post
+from .models import Equipamento
+from .models import Cidade
+from .models import Uf
+from .models import Pais
+from .models import Fornecedor
+from .models import Material
+from .models import Pagamento
+from .models import Setor
+from .models import Tarefa
+from .models import Funcionario
 from django.forms import ModelForm
 
 class PostForm(forms.ModelForm):
@@ -18,12 +26,12 @@ class EquipamentoForm(ModelForm):
 class CidadeForm(ModelForm):
 	class Meta:
 		model = Cidade
-		fields = ['nome','uf','pais']
+		fields = ['nome']
 
 class UfForm(ModelForm):
 	class Meta:
 		model = Uf
-		fields = ['sigla','pais','nome']
+		fields = ['sigla','nome']
 
 class PaisForm(ModelForm):
 	class Meta:
