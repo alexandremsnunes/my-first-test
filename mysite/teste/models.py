@@ -22,17 +22,23 @@ class Post(models.Model):
 class Pais(models.Model):
     sigla = models.CharField(max_length=2, primary_key=True)
     nome = models.CharField(max_length=40)
+    def __str__(self):
+        return self.nome
 
 class Uf(models.Model):
     sigla = models.CharField(max_length=2, primary_key=True)
     pais = models.ForeignKey(Pais, on_delete=models.CASCADE)
     nome = models.CharField(max_length=30)
+    def __str__(self):
+        return self.nome
 
 class Cidade(models.Model):
     cidade_id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=45)
     uf = models.ForeignKey(Uf,on_delete=models.CASCADE)
     pais = models.ForeignKey(Pais,on_delete=models.CASCADE)
+    def __str__(self):
+        return self.nome
 
 class Fornecedor(models.Model):
     fornecedor_id = models.AutoField(primary_key=True)
@@ -46,6 +52,8 @@ class Fornecedor(models.Model):
     cep = models.CharField(max_length=8)
     telefone = models.CharField(max_length=14)
     email = models.CharField(max_length=40)
+    def __str__(self):
+        return self.nome
 
 class Material(models.Model):
     material_id = models.AutoField(primary_key=True)
@@ -53,6 +61,8 @@ class Material(models.Model):
     fornecedor = models.ForeignKey(Fornecedor,on_delete=models.CASCADE)
     preco = models.FloatField()
     qtd_estoque = models.IntegerField()
+    def __str__(self):
+        return self.nome
 
 class Setor(models.Model):
     setor_id = models.AutoField(primary_key=True)
@@ -60,17 +70,23 @@ class Setor(models.Model):
     sigla = models.CharField(max_length=10)
     #setor_superior
     responsavel = models.CharField(max_length=30)
+    def __str__(self):
+        return self.nome
 
 class Tarefa(models.Model):
     Tarefa_id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=30)
     descricao = models.TextField()
     prazo = models.DateField()
+    def __str__(self):
+        return self.nome
 
 class Equipamento(models.Model):
     Tarefa_id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=30)
     descricao = models.TextField()
+    def __str__(self):
+        return self.nome
 
 class Funcionario(models.Model):
 
@@ -116,6 +132,8 @@ class Funcionario(models.Model):
     admissao = models.DateTimeField(default=timezone.now)
     email = models.CharField(max_length=40)
     salario = models.FloatField(max_length=50)
+    def __str__(self):
+        return self.nome
 
 class Pagamento(models.Model):
     PAGAMENTO_T = (
@@ -129,3 +147,5 @@ class Pagamento(models.Model):
     valor = models.FloatField()
     data_pagamento = models.DateTimeField(blank=True, null=True)
     tipo_pagamento = models.CharField(max_length=1, choices = PAGAMENTO_T)
+#    def __str__(self):
+#        return funcionario.nome
