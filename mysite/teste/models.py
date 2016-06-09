@@ -147,5 +147,5 @@ class Pagamento(models.Model):
     valor = models.FloatField()
     data_pagamento = models.DateTimeField(blank=True, null=True)
     tipo_pagamento = models.CharField(max_length=1, choices = PAGAMENTO_T)
-#    def __str__(self):
-#        return funcionario.nome
+    def __str__(self):
+        return '%s, %s'%(str(self.funcionario_id), str(self.valor))

@@ -11,6 +11,7 @@ from .models import Setor
 from .models import Tarefa
 from .models import Funcionario
 
+
 admin.site.register(Post)
 admin.site.register(Equipamento)
 admin.site.register(Cidade)
