@@ -82,9 +82,15 @@ email.
 Obra:
 codObra,
 nome,
-localidade,
+nome_logradouro,
+complemento,
+bairro,
+cidade,
+uf,
+cep,
 responsavel,
-prazo,
+inicio
+fim,
 equipamentos,
 Funcionario,
 setor, 
