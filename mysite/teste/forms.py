@@ -10,7 +10,9 @@ from .models import Pagamento
 from .models import Setor
 from .models import Tarefa
 from .models import Funcionario
+from .models import Obra
 from django.forms import ModelForm
+
 
 class PostForm(forms.ModelForm):
 
@@ -73,3 +75,14 @@ class FuncionarioForm(ModelForm):
 		'nome_logradouro','complemento','bairro',
 		'cep','telefone','data_nascimento','admissao',
 		'email','salario']
+
+class ObraForm(ModelForm):
+	class Meta:
+		model = Obra
+		fields = ['nome','tipo_logradouro','nome_logradouro','complemento',
+		'bairro','cidade','uf',
+		'cep','inicio','fim',
+		'equipamento','funcionario','setor','pagamento',
+		'tarefa','fornecedor',
+		'material','progresso',
+		'condicoes','acidentes']
