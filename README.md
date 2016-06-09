@@ -89,7 +89,7 @@ cidade,
 uf,
 cep,
 responsavel,
-inicio
+inicio,
 fim,
 equipamentos,
 Funcionario,
