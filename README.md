@@ -44,6 +44,7 @@ nome.
 Material:
 nome,
 fornecedor,
+preco,
 qtd_estoque.
 
 Pagamento:
